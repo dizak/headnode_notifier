@@ -6,6 +6,8 @@ __vresion__ = "testing"
 import smtplib
 from email.MIMEMultipart import MIMEMultipart
 from email.MIMEText import MIMEText
+import argparse
+
 
 def send_mail(to_addr,
               subj_msg,
@@ -26,3 +28,11 @@ def send_mail(to_addr,
     text_msg = msg.as_string()
     server.sendmail(from_addr, to_addr, text_msg)
     server.quit
+
+
+def __main__():
+    pass
+
+
+if __name__ == '__main__':
+    main()
