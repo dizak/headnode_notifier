@@ -30,7 +30,7 @@ def send_mail(to_addr,
     server.quit
 
 
-def __main__():
+def main():
     parser = argparse.ArgumentParser(prog = "headnode notifier",
                                      description = "Simple script for email\
                                                     notifications. Uses gmail.",
