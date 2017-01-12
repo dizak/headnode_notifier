@@ -9,6 +9,20 @@ from email.MIMEText import MIMEText
 import argparse
 
 
+def read_passwd_file(pass_file):
+    """Read password from external file and retrun as string. The file should
+    contain just single line. Prevents hard-coding password anywhere in this
+    script. IMPORTANT! Password is stored as plain text! Do NOT use with your
+    personal account!"
+
+    Args:
+        pass_file (str): /path/to/pass_file
+    """
+    with open(pass_file) as fin:
+        passwd = fin.read().strip()
+    return passwd
+
+
 def send_mail(to_addr,
               subj_msg,
               body_msg,
@@ -63,11 +77,22 @@ def main():
                         action = "store",
                         dest = "body",
                         help = "Message body")
+    parser.add_argument("--password-file",
+                        metavar = "",
+                        action = "store",
+                        dest = "password_file",
+                        help = "Read password from exeternal file. Prevents\
+                                hard-coding password anywhere in this script.\
+                                IMPORTANT! Password is stored as plain text!\
+                                Do NOT use with your personal account!")
     args = parser.parse_args()
+
+    passwd = read_passwd_file(args.password_file)
 
     send_mail(args.to,
               args.subject,
-              args.body)
+              args.body,
+              passwd = passwd)
 
 
 if __name__ == '__main__':
