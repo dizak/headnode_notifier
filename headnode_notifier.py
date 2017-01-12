@@ -39,8 +39,19 @@ def main():
                         metavar = "",
                         action = "store",
                         dest = "to",
-                        help = "Recipient address.")
+                        help = "Recipient address")
+    parser.add_argument("--subject",
+                        metavar = "",
+                        action = "store",
+                        dest = "subject",
+                        help = "Message subject")
+    parser.add_argument("--body",
+                        metavar = "",
+                        action = "store",
+                        dest = "body",
+                        help = "Message body")
     args = parser.parse_args()
+
 
 if __name__ == '__main__':
     main()
