@@ -74,11 +74,13 @@ def main():
                         metavar = "",
                         action = "store",
                         dest = "subject",
+                        default = "",
                         help = "Message subject")
     parser.add_argument("--body",
                         metavar = "",
                         action = "store",
                         dest = "body",
+                        default = "",
                         help = "Message body")
     parser.add_argument("--password-file",
                         metavar = "",
