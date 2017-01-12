@@ -16,6 +16,19 @@ def send_mail(to_addr,
               serv_port = 587,
               from_addr = "headnode.notify@gmail.com",
               passwd = "oYCOXggW",):
+    """Send an e-mail message using smtplib and email standard python libraries.
+    IMPORTANT! Password is stored as plain text! Do NOT use with your personal
+    account!
+
+    Args:
+        to_addr (str): Recipient address.
+        subj_msg (str): Message subject.
+        body_msg (str): Message body.
+        serv_addr (str): Server's address. Default: <smtp.gmail.com>.
+        serv_port (int): Server's port. Default: <587>.
+        from_addr (str): Account address. Default: <headnode.notifiy@gmail.com>.
+        passwd (str): Account password.
+    """
     msg = MIMEMultipart()
     msg["From"] = from_addr
     msg["To"] = to_addr
