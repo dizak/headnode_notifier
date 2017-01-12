@@ -40,7 +40,7 @@ def main():
                         action = "store",
                         dest = "to",
                         help = "Recipient address.")
-
+    args = parser.parse_args()
 
 if __name__ == '__main__':
     main()
