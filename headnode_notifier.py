@@ -8,8 +8,8 @@ from email.MIMEMultipart import MIMEMultipart
 from email.MIMEText import MIMEText
 
 def send_mail(to_addr,
-              body_msg,
               subj_msg,
+              body_msg,
               serv_addr = "smtp.gmail.com",
               serv_port = 587,
               from_addr = "headnode.notify@gmail.com",
@@ -18,8 +18,7 @@ def send_mail(to_addr,
     msg["From"] = from_addr
     msg["To"] = to_addr
     msg["Subject"] = subj_msg
-    body = body_msg
-    msg.attach(MIMEText(body, "plain"))
+    msg.attach(MIMEText(body_msg, "plain"))
 
     server = smtplib.SMTP(serv_addr, serv_port)
     server.starttls()
