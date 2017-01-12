@@ -5,6 +5,7 @@ import smtplib
 from email.MIMEMultipart import MIMEMultipart
 from email.MIMEText import MIMEText
 import argparse
+import sys
 
 
 __author__ = "Dariusz Izak"
@@ -83,18 +84,25 @@ def main():
                         metavar = "",
                         action = "store",
                         dest = "password_file",
+                        default = None,
                         help = "Read password from exeternal file. Prevents\
                                 hard-coding password anywhere in this script.\
                                 IMPORTANT! Password is stored as plain text!\
-                                Do NOT use with your personal account!")
+                                Do NOT use with your personal account! Default:\
+                                <.bashrc/path/to/headnode_notifier/passwd.txt>")
     args = parser.parse_args()
 
-    passwd = read_passwd_file(args.password_file)
+    if args.password_file is None:
+        passwd = sys.argv[0].replace(sys.argv[0].split("/")[-1],
+                                        "passwd.txt")
 
+    else:
+        passwd = args.password_file
+    passwd_from_file = read_passwd_file(passwd)
     send_mail(args.to,
               args.subject,
               args.body,
-              passwd = passwd)
+              passwd = passwd_from_file)
 
 
 if __name__ == '__main__':
