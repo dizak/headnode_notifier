@@ -52,6 +52,10 @@ def main():
                         help = "Message body")
     args = parser.parse_args()
 
+    send_mail(args.to,
+              args.subject,
+              args.body)
+
 
 if __name__ == '__main__':
     main()
