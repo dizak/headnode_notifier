@@ -31,7 +31,15 @@ def send_mail(to_addr,
 
 
 def __main__():
-    pass
+    parser = argparse.ArgumentParser(prog = "headnode notifier",
+                                     description = "Simple script for email\
+                                                    notifications. Uses gmail.",
+                                     version = "testing")
+    parser.add_argument("--to",
+                        metavar = "",
+                        action = "store",
+                        dest = "to",
+                        help = "Recipient address.")
 
 
 if __name__ == '__main__':
