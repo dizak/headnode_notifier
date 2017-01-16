@@ -113,7 +113,7 @@ def main():
 
     if args.password_file is None:
         passwd = sys.argv[0].replace(sys.argv[0].split("/")[-1],
-                                        "passwd.txt")
+                                     "passwd.txt")
 
     else:
         passwd = args.password_file
