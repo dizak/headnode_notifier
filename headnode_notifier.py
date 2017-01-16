@@ -50,16 +50,19 @@ def send_mail(to_addr,
         passwd (str): Account password.
     """
     msg = MIMEMultipart()
-    with open(attach_path, "rb") as fin:
-        part = MIMEBase("application", "octet-stream")
-        part.set_payload(fin.read())
-        encoders.encode_base64(part)
-        part.add_header("Content-Disposition",
-                        "attachment; filename={0}".format(attach_path))
+    if attach_path is not None:
+        with open(attach_path, "rb") as fin:
+            part = MIMEBase("application", "octet-stream")
+            part.set_payload(fin.read())
+            encoders.encode_base64(part)
+            part.add_header("Content-Disposition",
+                            "attachment; filename={0}".format(attach_path))
+            msg.attach(part)
+    else:
+        pass
     msg["From"] = from_addr
     msg["To"] = to_addr
     msg["Subject"] = subj_msg
-    msg.attach(part)
     msg.attach(MIMEText(body_msg, "plain"))
     server = smtplib.SMTP(serv_addr, serv_port)
     server.starttls()
