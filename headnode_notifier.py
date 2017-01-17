@@ -99,6 +99,23 @@ def main():
                         action = "store",
                         dest = "attach",
                         help = "Attachment")
+    parser.add_argument("--serv-addr",
+                        metavar = "",
+                        action = "store",
+                        dest = "serv_addr",
+                        default = None,
+                        help = "Server address. Default <smtp.gmail.com>")
+    parser.add_argument("--port",
+                        metavar = "",
+                        action = "store",
+                        dest = "port",
+                        default = 587,
+                        help = "Server's port. Default: <587>")
+    parser.add_argument("--from-addr",
+                        metavar = "",
+                        action = "store",
+                        dest = "from_addr",
+                        default = None)
     parser.add_argument("--password-file",
                         metavar = "",
                         action = "store",
@@ -117,11 +134,26 @@ def main():
 
     else:
         passwd = args.password_file
+    if args.serv_addr is not None:
+        serv_addr = args.serv_addr
+    else:
+        serv_addr = "smtp.gmail.com"
+    if args.port is not None:
+        port = args.port
+    else:
+        port = 587
+    if args.from_addr is not None:
+        from_addr = args.from_addr
+    else:
+        from_addr = "headnode.notify@gmail.com"
     passwd_from_file = read_passwd_file(passwd)
-    send_mail(args.to,
-              args.subject,
-              args.body,
-              args.attach,
+    send_mail(to_addr = args.to,
+              subj_msg = args.subject,
+              body_msg = args.body,
+              attach_path = args.attach,
+              serv_addr = serv_addr,
+              serv_port = port,
+              from_addr = from_addr,
               passwd = passwd_from_file)
 
 
