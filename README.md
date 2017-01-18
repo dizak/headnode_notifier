@@ -28,7 +28,7 @@ optional arguments:
                     <.bashrc/path/to/headnode_notifier/passwd.txt>
 ```
 
-###### Let's assume you are using default account and you have password file in a proper place
+#### Let's assume you are using default account and you have password file in a proper place
 
 You can specify the message subject, content and attach a file.
 
@@ -40,6 +40,6 @@ You can also send just blank message, only ```--to recipient@domain.com ``` is t
 
 You can specify server, port and else if you wish with ```--serv-addr smpt.provider.com --port 42 --from-addr my.address@provider.com```
 
-###### Password handling
+#### Password handling
 
 In order to avoid storing the password anywhere in the script, it read from file. You can specify the path using ```--password-file /path/to/file``` or just put ```passwd.txt``` where you system path point the script itself. Remember that the **password file is plain text** so use the script with caution.
