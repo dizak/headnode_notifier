@@ -74,11 +74,12 @@ def send_mail(to_addr,
 
 def main():
     parser = argparse.ArgumentParser(prog = "headnode notifier",
+                                     usage = "headnode_notifier [address] [OPTION]",
                                      description = "Simple script for email\
-                                                    notifications. Uses gmail.",
-                                     version = "testing")
-    parser.add_argument("--to",
-                        metavar = "",
+                                                    notifications. Uses gmail\
+                                                    by default.",
+                                     version = "1.0")
+    parser.add_argument(metavar = "",
                         action = "store",
                         dest = "to",
                         help = "Recipient address")
