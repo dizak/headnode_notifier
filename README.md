@@ -43,3 +43,8 @@ You can specify server, port and else if you wish with ```--serv-addr smpt.provi
 #### Password handling
 
 In order to avoid storing the password anywhere in the script, it read from file. You can specify the path using ```--password-file /path/to/file``` or just put ```passwd.txt``` where you system path point the script itself. Remember that the **password file is plain text** so use the script with caution.
+
+
+#### Using gmail
+
+Remember to allow *less secure apps* to connect if using gmail. You can set it on [google account security page](https://myaccount.google.com/security)
