@@ -115,7 +115,9 @@ def main():
                         metavar = "",
                         action = "store",
                         dest = "from_addr",
-                        default = None)
+                        default = None,
+                        help = "Account address.\
+                                Default: <headnode.notifiy@gmail.com>.")
     parser.add_argument("--password-file",
                         metavar = "",
                         action = "store",
