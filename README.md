@@ -36,7 +36,7 @@ You can specify the message subject, content and attach a file.
 headnode_notifier.py recipient@domain.com --subject 'Important message' --body 'Hello there!' --attach ./some/file.zip
 ```
 
-You can also send just blank message, only recipient@domain.com is truly obligatory if using default values for the rest.
+You can also send just blank message, only '''recipient@domain.com''' is truly obligatory if using default values for the rest.
 
 You can specify server, port and else if you wish with ```--serv-addr smpt.provider.com --port 42 --from-addr my.address@provider.com```
 
