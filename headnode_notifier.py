@@ -31,11 +31,11 @@ def read_passwd_file(pass_file):
 def send_mail(to_addr,
               subj_msg,
               body_msg,
-              attach_path = None,
-              serv_addr = "smtp.gmail.com",
-              serv_port = 587,
-              from_addr = "headnode.notify@gmail.com",
-              passwd = "",):
+              attach_path=None,
+              serv_addr="smtp.gmail.com",
+              serv_port=587,
+              from_addr="headnode.notify@gmail.com",
+              passwd="",):
     """Send an e-mail message using smtplib and email standard python libraries.
     IMPORTANT! Password is stored as plain text! Do NOT use with your personal
     account!
@@ -73,62 +73,62 @@ def send_mail(to_addr,
 
 
 def main():
-    parser = argparse.ArgumentParser(prog = "headnode notifier",
-                                     usage = "headnode_notifier [address] [OPTION]",
-                                     description = "Simple script for email\
-                                                    notifications. Uses gmail\
-                                                    by default.",
-                                     version = "1.0")
-    parser.add_argument(metavar = "",
-                        action = "store",
-                        dest = "to",
-                        help = "Recipient address")
+    parser = argparse.ArgumentParser(prog="headnode notifier",
+                                     usage="headnode_notifier [address] [OPTION]",
+                                     description="Simple script for email\
+                                                  notifications. Uses gmail\
+                                                  by default.",
+                                     version="1.0")
+    parser.add_argument(metavar="",
+                        action="store",
+                        dest="to",
+                        help="Recipient address")
     parser.add_argument("--subject",
-                        metavar = "",
-                        action = "store",
-                        dest = "subject",
-                        default = "",
-                        help = "Message subject")
+                        metavar="",
+                        action="store",
+                        dest="subject",
+                        default="",
+                        help="Message subject")
     parser.add_argument("--body",
-                        metavar = "",
-                        action = "store",
-                        dest = "body",
-                        default = "",
-                        help = "Message body")
+                        metavar="",
+                        action="store",
+                        dest="body",
+                        default="",
+                        help="Message body")
     parser.add_argument("--attach",
-                        metavar = "",
-                        action = "store",
-                        dest = "attach",
-                        help = "Attachment")
+                        metavar="",
+                        action="store",
+                        dest="attach",
+                        help="Attachment")
     parser.add_argument("--serv-addr",
-                        metavar = "",
-                        action = "store",
-                        dest = "serv_addr",
-                        default = None,
-                        help = "Server address. Default <smtp.gmail.com>")
+                        metavar="",
+                        action="store",
+                        dest="serv_addr",
+                        default=None,
+                        help="Server address. Default <smtp.gmail.com>")
     parser.add_argument("--port",
-                        metavar = "",
-                        action = "store",
-                        dest = "port",
-                        default = 587,
-                        help = "Server's port. Default: <587>")
+                        metavar="",
+                        action="store",
+                        dest="port",
+                        default=587,
+                        help="Server's port. Default: <587>")
     parser.add_argument("--from-addr",
-                        metavar = "",
-                        action = "store",
-                        dest = "from_addr",
-                        default = None,
-                        help = "Account address.\
-                                Default: <headnode.notifiy@gmail.com>.")
+                        metavar="",
+                        action="store",
+                        dest="from_addr",
+                        default=None,
+                        help="Account address.\
+                              Default: <headnode.notifiy@gmail.com>.")
     parser.add_argument("--password-file",
-                        metavar = "",
-                        action = "store",
-                        dest = "password_file",
-                        default = None,
-                        help = "Read password from exeternal file. Prevents\
-                                hard-coding password anywhere in this script.\
-                                IMPORTANT! Password is stored as plain text!\
-                                Do NOT use with your personal account! Default:\
-                                <.bashrc/path/to/headnode_notifier/passwd.txt>")
+                        metavar="",
+                        action="store",
+                        dest="password_file",
+                        default=None,
+                        help="Read password from exeternal file. Prevents\
+                              hard-coding password anywhere in this script.\
+                              IMPORTANT! Password is stored as plain text!\
+                              Do NOT use with your personal account! Default:\
+                              <.bashrc/path/to/headnode_notifier/passwd.txt>")
     args = parser.parse_args()
 
     if args.password_file is None:
@@ -150,14 +150,14 @@ def main():
     else:
         from_addr = "headnode.notify@gmail.com"
     passwd_from_file = read_passwd_file(passwd)
-    send_mail(to_addr = args.to,
-              subj_msg = args.subject,
-              body_msg = args.body,
-              attach_path = args.attach,
-              serv_addr = serv_addr,
-              serv_port = port,
-              from_addr = from_addr,
-              passwd = passwd_from_file)
+    send_mail(to_addr=args.to,
+              subj_msg=args.subject,
+              body_msg=args.body,
+              attach_path=args.attach,
+              serv_addr=serv_addr,
+              serv_port=port,
+              from_addr=from_addr,
+              passwd=passwd_from_file)
 
 
 if __name__ == '__main__':
