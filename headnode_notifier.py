@@ -118,7 +118,7 @@ def main():
                         dest="from_addr",
                         default=None,
                         help="Account address.\
-                              Default: <headnode.notifiy@gmail.com>.")
+                              Default: <headnode.notify@gmail.com>.")
     parser.add_argument("--password-file",
                         metavar="",
                         action="store",

@@ -20,7 +20,7 @@ optional arguments:
   --attach          Attachment
   --serv-addr       Server address. Default <smtp.gmail.com>
   --port            Server's port. Default: <587>
-  --from-addr       Account address. Default: <headnode.notifiy@gmail.com>.
+  --from-addr       Account address. Default: <headnode.notify@gmail.com>.
   --password-file   Read password from exeternal file. Prevents hard-coding
                     password anywhere in this script. IMPORTANT! Password is
                     stored as plain text! Do NOT use with your personal
