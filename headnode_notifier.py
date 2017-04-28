@@ -11,7 +11,7 @@ import sys
 
 
 __author__ = "Dariusz Izak"
-__version__ = "1.1"
+__vresion__ = "testing"
 
 
 def read_passwd_file(pass_file):
@@ -78,7 +78,7 @@ def main():
                                      description="Simple script for email\
                                                   notifications. Uses gmail\
                                                   by default.",
-                                     version="1.1")
+                                     version="1.0")
     parser.add_argument(metavar="",
                         action="store",
                         dest="to",
