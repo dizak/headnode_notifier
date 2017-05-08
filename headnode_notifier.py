@@ -78,7 +78,7 @@ def main():
                                      description="Simple script for email\
                                                   notifications. Uses gmail\
                                                   by default.",
-                                     version="1.1")
+                                     version=__version__)
     parser.add_argument(metavar="",
                         action="store",
                         dest="to",
