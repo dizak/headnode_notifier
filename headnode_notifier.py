@@ -8,6 +8,7 @@ from email.MIMEBase import MIMEBase
 from email import encoders
 import argparse
 import sys
+import ConfigParser
 
 
 __author__ = "Dariusz Izak"
@@ -31,11 +32,11 @@ def read_passwd_file(pass_file):
 def send_mail(to_addr,
               subj_msg,
               body_msg,
-              attach_path=None,
-              serv_addr="smtp.gmail.com",
-              serv_port=587,
-              from_addr="headnode.notify@gmail.com",
-              passwd="",):
+              attach_path,
+              serv_addr,
+              serv_port,
+              from_addr,
+              passwd):
     """Send an e-mail message using smtplib and email standard python libraries.
     IMPORTANT! Password is stored as plain text! Do NOT use with your personal
     account!
@@ -131,24 +132,30 @@ def main():
                               <.bashrc/path/to/headnode_notifier/passwd.txt>")
     args = parser.parse_args()
 
-    if args.password_file is None:
-        passwd = sys.argv[0].replace(sys.argv[0].split("/")[-1],
-                                     "passwd.txt")
+    config = ConfigParser.SafeConfigParser()
+    config.read(sys.argv[0].replace(sys.argv[0].split("/")[-1],
+                "headnode_notifier.config"))
+    conf_serv_addr = config.get("server", "address")
+    conf_port = config.get("server", "port")
+    conf_from_addr = config.get("mailbox", "address")
+    conf_passwd = config.get("mailbox", "password_file")
 
+    if args.password_file is None:
+        passwd = conf_passwd
     else:
         passwd = args.password_file
     if args.serv_addr is not None:
         serv_addr = args.serv_addr
     else:
-        serv_addr = "smtp.gmail.com"
+        serv_addr = conf_serv_addr
     if args.port is not None:
         port = args.port
     else:
-        port = 587
+        port = conf_port
     if args.from_addr is not None:
         from_addr = args.from_addr
     else:
-        from_addr = "headnode.notify@gmail.com"
+        from_addr = conf_from_addr
     passwd_from_file = read_passwd_file(passwd)
     send_mail(to_addr=args.to,
               subj_msg=args.subject,
