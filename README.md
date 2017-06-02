@@ -20,12 +20,11 @@ optional arguments:
   --attach          Attachment
   --serv-addr       Server address. Default <smtp.gmail.com>
   --port            Server's port. Default: <587>
-  --from-addr       Account address. Default: <headnode.notify@gmail.com>.
+  --from-addr       Account address.
   --password-file   Read password from exeternal file. Prevents hard-coding
                     password anywhere in this script. IMPORTANT! Password is
                     stored as plain text! Do NOT use with your personal
-                    account! Default:
-                    <.bashrc/path/to/headnode_notifier/passwd.txt>
+                    account!
 ```
 
 #### Let's assume you are using default account and you have password file in a proper place
@@ -40,9 +39,18 @@ You can also send just blank message, only ```recipient@domain.com``` is truly o
 
 You can specify server, port and else if you wish with ```--serv-addr smpt.provider.com --port 42 --from-addr my.address@provider.com```
 
+#### Config handling
+If an option is not specified in the CLI, it is read from the headnode_notifier.config file. It is meant to facilitate the usage by setting default values for:
+
+1. Server address.
+2. Port.
+3. Mailbox address
+4. /path/to/password_file
+
+
 #### Password handling
 
-In order to avoid storing the password anywhere in the script, it is read from file. You can specify the path using ```--password-file /path/to/file``` or just put ```passwd.txt``` where your system path points to the script itself. Remember that the **password file is plain text** so use the script with caution.
+In order to avoid storing the password anywhere in the script, it is read from file. You can specify the path using ```--password-file /path/to/file``` or in the config file. Remember that the **password file is plain text** so use the script with caution.
 
 
 #### Using gmail
