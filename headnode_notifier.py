@@ -12,7 +12,7 @@ import ConfigParser
 
 
 __author__ = "Dariusz Izak"
-__version__ = "1.1"
+__version__ = "1.2"
 
 
 def read_passwd_file(pass_file):
@@ -118,8 +118,7 @@ def main():
                         action="store",
                         dest="from_addr",
                         default=None,
-                        help="Account address.\
-                              Default: <headnode.notify@gmail.com>.")
+                        help="Account address.")
     parser.add_argument("--password-file",
                         metavar="",
                         action="store",
@@ -128,8 +127,7 @@ def main():
                         help="Read password from exeternal file. Prevents\
                               hard-coding password anywhere in this script.\
                               IMPORTANT! Password is stored as plain text!\
-                              Do NOT use with your personal account! Default:\
-                              <.bashrc/path/to/headnode_notifier/passwd.txt>")
+                              Do NOT use with your personal account!")
     args = parser.parse_args()
 
     config = ConfigParser.SafeConfigParser()
