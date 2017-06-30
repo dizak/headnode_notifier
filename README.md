@@ -48,6 +48,28 @@ If an option is not specified in the CLI, it is read from the headnode_notifier.
 4. /path/to/password_file
 
 
+* Config content:
+
+```
+[server]
+address = smtp.gmail.com
+port = 587
+
+[mailbox]
+address =
+password_file =
+```
+
+
+* Config location: **$HOME**
+
+
+* Config name:
+
+```
+.headnode_notifier.config
+```
+
 #### Password handling
 
 In order to avoid storing the password anywhere in the script, it is read from file. You can specify the path using ```--password-file /path/to/file``` or in the config file. Remember that the **password file is plain text** so use the script with caution.
