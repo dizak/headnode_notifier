@@ -7,12 +7,12 @@ from email.MIMEText import MIMEText
 from email.MIMEBase import MIMEBase
 from email import encoders
 import argparse
-import sys
+import os
 import ConfigParser
 
 
 __author__ = "Dariusz Izak"
-__version__ = "1.2"
+__version__ = "1.3"
 
 
 def read_passwd_file(pass_file):
@@ -130,13 +130,15 @@ def main():
                               Do NOT use with your personal account!")
     args = parser.parse_args()
 
-    config = ConfigParser.SafeConfigParser()
-    config.read(sys.argv[0].replace(sys.argv[0].split("/")[-1],
-                "headnode_notifier.config"))
-    conf_serv_addr = config.get("server", "address")
-    conf_port = config.get("server", "port")
-    conf_from_addr = config.get("mailbox", "address")
-    conf_passwd = config.get("mailbox", "password_file")
+    home = os.path.expanduser("~")
+    config_file_name = ".headnode_notifier.config"
+    if os.path.isfile("{}/{}".format(home, config_file_name)) is True:
+        config = ConfigParser.SafeConfigParser()
+        config.read("{}/{}".format(home, config_file_name))
+        conf_serv_addr = config.get("server", "address")
+        conf_port = config.get("server", "port")
+        conf_from_addr = config.get("mailbox", "address")
+        conf_passwd = config.get("mailbox", "password_file")
 
     if args.password_file is None:
         passwd = conf_passwd
@@ -154,6 +156,9 @@ def main():
         from_addr = args.from_addr
     else:
         from_addr = conf_from_addr
+    if None or "" in [passwd, serv_addr, port, from_addr]:
+        print "Missing values for password, server address, port or mailbox.\nPlease check your config file or CLI arguments.\nQuitting..."
+        exit()
     passwd_from_file = read_passwd_file(passwd)
     send_mail(to_addr=args.to,
               subj_msg=args.subject,
