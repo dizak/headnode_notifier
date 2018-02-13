@@ -12,7 +12,7 @@ import ConfigParser
 
 
 __author__ = "Dariusz Izak"
-__version__ = "1.3.1"
+__version__ = "1.4.1"
 
 
 def read_passwd_file(pass_file):
