@@ -12,7 +12,7 @@ import ConfigParser
 
 
 __author__ = "Dariusz Izak"
-__version__ = "1.3"
+__version__ = "1.3.1"
 
 
 def read_passwd_file(pass_file):
@@ -105,7 +105,7 @@ def main():
                         metavar="",
                         action="store",
                         dest="serv_addr",
-                        default=None,
+                        default="smtp.gmail.com",
                         help="Server address. Default <smtp.gmail.com>")
     parser.add_argument("--port",
                         metavar="",
@@ -130,9 +130,17 @@ def main():
                               Do NOT use with your personal account!")
     args = parser.parse_args()
 
+    messages = {"config found": "Config file found.",
+                "password found": "Password file found",
+                "missing values": "Missing values for password, server address, port or mailbox.\nPlease check your config file or CLI arguments.\nQuitting...",
+                "sent": "Message sent."}
+
+    conf_passwd = conf_serv_addr = conf_port = conf_from_addr = None
+
     home = os.path.expanduser("~")
     config_file_name = ".headnode_notifier.config"
     if os.path.isfile("{}/{}".format(home, config_file_name)) is True:
+        print messages["config found"]
         config = ConfigParser.SafeConfigParser()
         config.read("{}/{}".format(home, config_file_name))
         conf_serv_addr = config.get("server", "address")
@@ -140,24 +148,20 @@ def main():
         conf_from_addr = config.get("mailbox", "address")
         conf_passwd = config.get("mailbox", "password_file")
 
+    passwd = args.password_file
+    serv_addr = args.serv_addr
+    port = args.port
+    from_addr = args.from_addr
     if args.password_file is None:
         passwd = conf_passwd
-    else:
-        passwd = args.password_file
-    if args.serv_addr is not None:
-        serv_addr = args.serv_addr
-    else:
+    if args.serv_addr is None:
         serv_addr = conf_serv_addr
-    if args.port is not None:
-        port = args.port
-    else:
+    if args.port is None:
         port = conf_port
-    if args.from_addr is not None:
-        from_addr = args.from_addr
-    else:
+    if args.from_addr is None:
         from_addr = conf_from_addr
-    if None or "" in [passwd, serv_addr, port, from_addr]:
-        print "Missing values for password, server address, port or mailbox.\nPlease check your config file or CLI arguments.\nQuitting..."
+    if None in [passwd, serv_addr, port, from_addr] or "" in [passwd, serv_addr, port, from_addr]:
+        print messages["missing values"]
         exit()
     passwd_from_file = read_passwd_file(passwd)
     send_mail(to_addr=args.to,
@@ -168,6 +172,7 @@ def main():
               serv_port=port,
               from_addr=from_addr,
               passwd=passwd_from_file)
+    print messages["sent"]
 
 
 if __name__ == '__main__':
