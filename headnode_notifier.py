@@ -1,14 +1,15 @@
 #! /usr/bin/env python
 
-
+from __future__ import print_function
+import six
 import smtplib
-from email.MIMEMultipart import MIMEMultipart
-from email.MIMEText import MIMEText
-from email.MIMEBase import MIMEBase
+from six.moves.email_mime_multipart import MIMEMultipart
+from six.moves.email_mime_text import MIMEText
+from six.moves.email_mime_base import MIMEBase
 from email import encoders
 import argparse
 import os
-import ConfigParser
+from six.moves import configparser
 
 
 __author__ = "Dariusz Izak"
@@ -78,8 +79,11 @@ def main():
                                      usage="headnode_notifier [address] [OPTION]",
                                      description="Simple script for email\
                                                   notifications. Uses gmail\
-                                                  by default.",
-                                     version=__version__)
+                                                  by default.")
+    parser.add_argument("-v",
+                        "--version",
+                        action="version",
+                        version=__version__)
     parser.add_argument(metavar="",
                         action="store",
                         dest="to",
@@ -140,8 +144,8 @@ def main():
     home = os.path.expanduser("~")
     config_file_name = ".headnode_notifier.config"
     if os.path.isfile("{}/{}".format(home, config_file_name)) is True:
-        print messages["config found"]
-        config = ConfigParser.SafeConfigParser()
+        print(messages["config found"])
+        config = configparser.ConfigParser()
         config.read("{}/{}".format(home, config_file_name))
         conf_serv_addr = config.get("server", "address")
         conf_port = config.get("server", "port")
@@ -161,7 +165,7 @@ def main():
     if args.from_addr is None:
         from_addr = conf_from_addr
     if None in [passwd, serv_addr, port, from_addr] or "" in [passwd, serv_addr, port, from_addr]:
-        print messages["missing values"]
+        print(messages["missing values"])
         exit()
     passwd_from_file = read_passwd_file(passwd)
     send_mail(to_addr=args.to,
@@ -172,7 +176,7 @@ def main():
               serv_port=port,
               from_addr=from_addr,
               passwd=passwd_from_file)
-    print messages["sent"]
+    print(messages["sent"])
 
 
 if __name__ == '__main__':
