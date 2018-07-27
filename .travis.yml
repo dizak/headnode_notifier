@@ -14,7 +14,7 @@ script:
   - headnode_notifier.py -h > test_help.log
   - diff test_data/logs/ref_help.log test_help.log
   - echo $passwd > $HOME/.headnode_notifier.pass
-  - headnode_notifier.py dariusz.izak.ibb@gmail.com --from-addr headnode.notify@gmail.com --subject travis_test_topic --body travis_test_body --password-file $HOME/.headnode_notifier.pass
+  #- headnode_notifier.py dariusz.izak.ibb@gmail.com --from-addr headnode.notify@gmail.com --subject travis_test_topic --body travis_test_body --password-file $HOME/.headnode_notifier.pass
   - headnode_notifier.py dariusz.izak.ibb@gmail.com --subject travis_test_topic --body travis_test_body --password-file $HOME/.headnode_notifier.pass > test_missing.log
   - diff test_data/logs/ref_missing.log test_missing.log
 
