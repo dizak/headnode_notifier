@@ -1,0 +1,20 @@
+usage: headnode_notifier [address] [OPTION]
+
+Simple script for email notifications. Uses gmail by default.
+
+positional arguments:
+                    Recipient address
+
+optional arguments:
+  -h, --help        show this help message and exit
+  -v, --version     show program's version number and exit
+  --subject         Message subject
+  --body            Message body
+  --attach          Attachment
+  --serv-addr       Server address. Default <smtp.gmail.com>
+  --port            Server's port. Default: <587>
+  --from-addr       Account address.
+  --password-file   Read password from exeternal file. Prevents hard-coding
+                    password anywhere in this script. IMPORTANT! Password is
+                    stored as plain text! Do NOT use with your personal
+                    account!
