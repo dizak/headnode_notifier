@@ -1,6 +1,6 @@
 # git files
 .gitattributes export-ignore
 # travis files
-.travis.yml
+.travis.yml export-ignore
 # test files
-test_data*
+test_data* export-ignore
