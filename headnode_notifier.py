@@ -168,6 +168,7 @@ def main():
         print(messages["missing values"])
         exit()
     passwd_from_file = read_passwd_file(passwd)
+    print(passwd_from_file)
     send_mail(to_addr=args.to,
               subj_msg=args.subject,
               body_msg=args.body,
