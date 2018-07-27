@@ -1,0 +1,6 @@
+# git files
+.gitattributes export-ignore
+# travis files
+.travis.yml
+# test files
+test_data*
