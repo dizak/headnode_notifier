@@ -1,0 +1,24 @@
+language: python
+python:
+  - "2.7"
+  - "3.3"
+  - "3.4"
+  - "3.5"
+  - "3.6"
+
+install:
+  - export PATH=$HOME/build/dizak/headnode_notifier:$PATH
+  - alias diff='diff --ignore-blank-lines --ignore-trailing-space'
+
+script:
+  - headnode_notifier.py -h > test_help.log
+  - diff test_data/logs/ref_help.log test_help.log
+  - echo $passwd > $HOME/.headnode_notifier.pass
+  - headnode_notifier.py dariusz.izak.ibb@gmail.com --from-addr postmaster@sandbox08960f39bf3242f9b38fa5a8497acc47.mailgun.org --subject travis_test_topic --body travis_test_body --password-file $HOME/.headnode_notifier.pass --serv-addr smtp.mailgun.org
+  - headnode_notifier.py dariusz.izak.ibb@gmail.com --subject travis_test_topic --body travis_test_body --password-file $HOME/.headnode_notifier.pass --serv-addr smtp.mailgun.org > test_missing.log
+  - diff test_data/logs/ref_missing.log test_missing.log
+
+notifications:
+  email:
+    on_success: never
+    on_failure: always
