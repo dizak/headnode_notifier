@@ -13,7 +13,8 @@ install:
 script:
   - headnode_notifier.py -h > test_help.log
   - diff test_data/logs/ref_help.log test_help.log
-  - echo $test_passwd
+  - echo $test_passwd > test_passwd
+  - cat test_passwd
 
 notifications:
   email:
