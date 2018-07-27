@@ -3,4 +3,4 @@
 # travis files
 .travis.yml
 # test files
-test_data
+test_data*
