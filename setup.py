@@ -10,6 +10,8 @@ setup(
     packages=find_packages(exclude=["*test*"]),
     install_requires=open("requirements.txt").readlines(),
     description="Simple script for sending emails",
+    long_description=open("README.md").read(),
+    long_description_content_type="text/markdown",
     author_email="dariusz.izak@ibb.waw.pl",
     url="https://github.com/dizak/headnode_notifier",
     license="MIT",
