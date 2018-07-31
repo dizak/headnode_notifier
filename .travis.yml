@@ -19,6 +19,13 @@ script:
   - headnode_notifier.py dariusz.izak.ibb@gmail.com --subject travis_test_topic --body travis_test_body --password-file $HOME/.headnode_notifier.pass --serv-addr smtp.mailgun.org > test_missing.log
   - diff test_data/logs/ref_missing.log test_missing.log
 
+deploy:
+  provider: pypi
+  user: dizak
+  password: $pypi_passwd
+  on:
+    tags: true
+
 notifications:
   email:
     on_success: never
