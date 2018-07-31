@@ -9,6 +9,7 @@ python:
 install:
   - export PATH=$HOME/build/dizak/headnode_notifier:$PATH
   - alias diff='diff --ignore-blank-lines --ignore-trailing-space'
+  - python setup.py sdist bdist_wheel
 
 script:
   - headnode_notifier.py -h > test_help.log
