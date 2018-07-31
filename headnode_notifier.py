@@ -13,7 +13,7 @@ from six.moves import configparser
 
 
 __author__ = "Dariusz Izak"
-__version__ = "1.5.2"
+__version__ = "1.5.3"
 
 
 def read_passwd_file(pass_file):
