@@ -21,7 +21,7 @@ setup(
         "mail",
         "client",
         "layer",
-    ]
+    ],
     classifiers=[
         "Operating System :: POSIX :: Linux",
         "Programming Language :: Python :: 2",
