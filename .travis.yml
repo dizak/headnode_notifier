@@ -6,6 +6,16 @@ python:
   - "3.5"
   - "3.6"
 
+  deploy:
+    provider: pypi
+    user: dizak
+    password: $pypi_passwd
+    distributions: sdist bdist_wheel
+    on:
+      tags: true
+      branch: master
+      python: 3.6
+
 install:
   - export PATH=$HOME/build/dizak/headnode_notifier:$PATH
   - alias diff='diff --ignore-blank-lines --ignore-trailing-space'
@@ -19,15 +29,6 @@ script:
   - headnode_notifier.py dariusz.izak.ibb@gmail.com --subject travis_test_topic --body travis_test_body --password-file $HOME/.headnode_notifier.pass --serv-addr smtp.mailgun.org > test_missing.log
   - diff test_data/logs/ref_missing.log test_missing.log
 
-deploy:
-  provider: pypi
-  user: dizak
-  password: $pypi_passwd
-  distributions: sdist bdist_wheel
-  on:
-    tags: true
-    branch: master
-    python: 3.6
 
 notifications:
   email:
