@@ -23,8 +23,11 @@ deploy:
   provider: pypi
   user: dizak
   password: $pypi_passwd
+  distributions: sdist bdist_wheel
   on:
     tags: true
+    branch: master
+    python: 3.6
 
 notifications:
   email:
